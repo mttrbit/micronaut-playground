@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: helloCiot
+  executors:
+    io:
+      type: fixed
+      nThreads: 75
+---
+mongodb:
+  uri: "mongodb://${MONGO_HOST:localhost}:${MONGO_PORT:27017}/micronaut"
+
+---
+#tag::security[]
+micronaut:
+  security:
+    authentication: cookie
+    redirect:
+      login-failure: /login/authFailed
+    credentials:
+      username: admin
+      password: admin
+#end::security[]
